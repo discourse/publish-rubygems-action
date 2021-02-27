@@ -19,7 +19,7 @@ bundle install
 
 gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('$(ls *.gemspec)').version")
 
-if git rev-parse "v$gem_version" >/dev/null 2>&1
+if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1
 then
   echo "Tag 'v$gem_version' already exists"
 else
