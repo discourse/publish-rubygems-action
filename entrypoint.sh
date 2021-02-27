@@ -13,10 +13,6 @@ EOF
 chmod 0600 ~/.gem/credentials
 set -x
 
-echo "Installing dependencies..."
-gem update bundler
-bundle install
-
 gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('$(ls *.gemspec)').version")
 
 if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1
@@ -25,6 +21,10 @@ then
 else
   git config user.email ${GIT_EMAIL:-"automated@example.com"}
   git config user.name ${GIT_NAME:-"Automated Release"}
+
+  echo "Installing dependencies..."
+  gem update bundler
+  bundle install
 
   echo "Running gem release task..."
   release_command="${RELEASE_COMMAND:-rake release}"
