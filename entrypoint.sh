@@ -18,8 +18,8 @@ if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1
 then
   echo "Tag 'v$gem_version' already exists"
 else
-  git config user.email ${GIT_EMAIL:-"automated@example.com"}
-  git config user.name ${GIT_NAME:-"Automated Release"}
+  git config user.email "${GIT_EMAIL:-automated@example.com}"
+  git config user.name "${GIT_NAME:-Automated Release}"
 
   echo "Installing dependencies..."
   gem update bundler
